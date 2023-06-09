@@ -1,1 +1,1 @@
-# ConsiousSpendings
+# ConsciousSpendings
