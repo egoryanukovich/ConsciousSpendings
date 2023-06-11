@@ -11,7 +11,7 @@ import SwiftUI
 struct Conscious_SpendingsApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainSpendingView()
         }
     }
 }

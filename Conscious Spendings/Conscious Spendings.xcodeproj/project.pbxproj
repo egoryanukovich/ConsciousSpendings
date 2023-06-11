@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		A38DDD752A33793800044E25 /* Conscious_SpendingsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38DDD742A33793800044E25 /* Conscious_SpendingsApp.swift */; };
-		A38DDD772A33793800044E25 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38DDD762A33793800044E25 /* ContentView.swift */; };
 		A38DDD792A33793900044E25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A38DDD782A33793900044E25 /* Assets.xcassets */; };
-		A38DDD7C2A33793A00044E25 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A38DDD7B2A33793A00044E25 /* Preview Assets.xcassets */; };
 		A38DDD862A33793A00044E25 /* Conscious_SpendingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38DDD852A33793A00044E25 /* Conscious_SpendingsTests.swift */; };
 		A38DDD902A33793A00044E25 /* Conscious_SpendingsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38DDD8F2A33793A00044E25 /* Conscious_SpendingsUITests.swift */; };
 		A38DDD922A33793A00044E25 /* Conscious_SpendingsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38DDD912A33793A00044E25 /* Conscious_SpendingsUITestsLaunchTests.swift */; };
+		A38DDDA02A34FF5F00044E25 /* MainSpendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38DDD9F2A34FF5F00044E25 /* MainSpendingView.swift */; };
+		A38DDDA22A36084700044E25 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A38DDDA12A36084700044E25 /* Color.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,14 +36,14 @@
 /* Begin PBXFileReference section */
 		A38DDD712A33793800044E25 /* Conscious Spendings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Conscious Spendings.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A38DDD742A33793800044E25 /* Conscious_SpendingsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conscious_SpendingsApp.swift; sourceTree = "<group>"; };
-		A38DDD762A33793800044E25 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A38DDD782A33793900044E25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A38DDD7B2A33793A00044E25 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A38DDD812A33793A00044E25 /* Conscious SpendingsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Conscious SpendingsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A38DDD852A33793A00044E25 /* Conscious_SpendingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conscious_SpendingsTests.swift; sourceTree = "<group>"; };
 		A38DDD8B2A33793A00044E25 /* Conscious SpendingsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Conscious SpendingsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A38DDD8F2A33793A00044E25 /* Conscious_SpendingsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conscious_SpendingsUITests.swift; sourceTree = "<group>"; };
 		A38DDD912A33793A00044E25 /* Conscious_SpendingsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conscious_SpendingsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A38DDD9F2A34FF5F00044E25 /* MainSpendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSpendingView.swift; sourceTree = "<group>"; };
+		A38DDDA12A36084700044E25 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,20 +94,12 @@
 		A38DDD732A33793800044E25 /* Conscious Spendings */ = {
 			isa = PBXGroup;
 			children = (
+				A38DDD9E2A34FEF300044E25 /* Main */,
 				A38DDD742A33793800044E25 /* Conscious_SpendingsApp.swift */,
-				A38DDD762A33793800044E25 /* ContentView.swift */,
 				A38DDD782A33793900044E25 /* Assets.xcassets */,
-				A38DDD7A2A33793A00044E25 /* Preview Content */,
+				A38DDDA12A36084700044E25 /* Color.xcassets */,
 			);
 			path = "Conscious Spendings";
-			sourceTree = "<group>";
-		};
-		A38DDD7A2A33793A00044E25 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				A38DDD7B2A33793A00044E25 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		A38DDD842A33793A00044E25 /* Conscious SpendingsTests */ = {
@@ -125,6 +117,14 @@
 				A38DDD912A33793A00044E25 /* Conscious_SpendingsUITestsLaunchTests.swift */,
 			);
 			path = "Conscious SpendingsUITests";
+			sourceTree = "<group>";
+		};
+		A38DDD9E2A34FEF300044E25 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A38DDD9F2A34FF5F00044E25 /* MainSpendingView.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,8 +231,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A38DDD7C2A33793A00044E25 /* Preview Assets.xcassets in Resources */,
 				A38DDD792A33793900044E25 /* Assets.xcassets in Resources */,
+				A38DDDA22A36084700044E25 /* Color.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,8 +257,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A38DDD772A33793800044E25 /* ContentView.swift in Sources */,
 				A38DDD752A33793800044E25 /* Conscious_SpendingsApp.swift in Sources */,
+				A38DDDA02A34FF5F00044E25 /* MainSpendingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +416,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Conscious Spendings/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"\"";
 				DEVELOPMENT_TEAM = 2GS2YW77K7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -430,7 +430,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eyanukovich.Conscious-Spendings";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eyanukovich.ConsciousSpendings;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -445,7 +445,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Conscious Spendings/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"\"";
 				DEVELOPMENT_TEAM = 2GS2YW77K7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -459,7 +459,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.eyanukovich.Conscious-Spendings";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eyanukovich.ConsciousSpendings;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
