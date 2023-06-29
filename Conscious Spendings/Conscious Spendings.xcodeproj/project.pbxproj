@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A31D6DB92A4DBB81002D999C /* SpendingsResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31D6DB82A4DBB81002D999C /* SpendingsResultView.swift */; };
+		A31D6DBE2A4DC508002D999C /* UIScreenExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31D6DBD2A4DC508002D999C /* UIScreenExt.swift */; };
+		A31D6DC02A4DC937002D999C /* ViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31D6DBF2A4DC937002D999C /* ViewExt.swift */; };
+		A31D6DC22A4DC968002D999C /* UIApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31D6DC12A4DC968002D999C /* UIApplicationExt.swift */; };
+		A31D6DC52A4DD255002D999C /* RoundedDecimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31D6DC42A4DD255002D999C /* RoundedDecimal.swift */; };
+		A31D6DC72A4DD2C3002D999C /* DecimalExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31D6DC62A4DD2C3002D999C /* DecimalExt.swift */; };
+		A31D6DC92A4DD2FA002D999C /* MainSpendingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31D6DC82A4DD2FA002D999C /* MainSpendingViewModel.swift */; };
+		A31F77642A365F41006C486D /* TodaySpendingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31F77632A365F41006C486D /* TodaySpendingsView.swift */; };
 		A38DDD752A33793800044E25 /* Conscious_SpendingsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38DDD742A33793800044E25 /* Conscious_SpendingsApp.swift */; };
 		A38DDD792A33793900044E25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A38DDD782A33793900044E25 /* Assets.xcassets */; };
 		A38DDD862A33793A00044E25 /* Conscious_SpendingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38DDD852A33793A00044E25 /* Conscious_SpendingsTests.swift */; };
@@ -34,6 +42,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A31D6DB82A4DBB81002D999C /* SpendingsResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingsResultView.swift; sourceTree = "<group>"; };
+		A31D6DBD2A4DC508002D999C /* UIScreenExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExt.swift; sourceTree = "<group>"; };
+		A31D6DBF2A4DC937002D999C /* ViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExt.swift; sourceTree = "<group>"; };
+		A31D6DC12A4DC968002D999C /* UIApplicationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExt.swift; sourceTree = "<group>"; };
+		A31D6DC42A4DD255002D999C /* RoundedDecimal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedDecimal.swift; sourceTree = "<group>"; };
+		A31D6DC62A4DD2C3002D999C /* DecimalExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalExt.swift; sourceTree = "<group>"; };
+		A31D6DC82A4DD2FA002D999C /* MainSpendingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSpendingViewModel.swift; sourceTree = "<group>"; };
+		A31F77632A365F41006C486D /* TodaySpendingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySpendingsView.swift; sourceTree = "<group>"; };
 		A38DDD712A33793800044E25 /* Conscious Spendings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Conscious Spendings.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A38DDD742A33793800044E25 /* Conscious_SpendingsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conscious_SpendingsApp.swift; sourceTree = "<group>"; };
 		A38DDD782A33793900044E25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,6 +87,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A31D6DBA2A4DC4E5002D999C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A31D6DBD2A4DC508002D999C /* UIScreenExt.swift */,
+				A31D6DBF2A4DC937002D999C /* ViewExt.swift */,
+				A31D6DC12A4DC968002D999C /* UIApplicationExt.swift */,
+				A31D6DC62A4DD2C3002D999C /* DecimalExt.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A31D6DC32A4DD21F002D999C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A31D6DC42A4DD255002D999C /* RoundedDecimal.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		A31F77622A365F2E006C486D /* TodaySpendings */ = {
+			isa = PBXGroup;
+			children = (
+				A31F77632A365F41006C486D /* TodaySpendingsView.swift */,
+				A31D6DB82A4DBB81002D999C /* SpendingsResultView.swift */,
+			);
+			path = TodaySpendings;
+			sourceTree = "<group>";
+		};
 		A38DDD682A33793800044E25 = {
 			isa = PBXGroup;
 			children = (
@@ -94,10 +138,13 @@
 		A38DDD732A33793800044E25 /* Conscious Spendings */ = {
 			isa = PBXGroup;
 			children = (
-				A38DDD9E2A34FEF300044E25 /* Main */,
-				A38DDD742A33793800044E25 /* Conscious_SpendingsApp.swift */,
 				A38DDD782A33793900044E25 /* Assets.xcassets */,
 				A38DDDA12A36084700044E25 /* Color.xcassets */,
+				A38DDD742A33793800044E25 /* Conscious_SpendingsApp.swift */,
+				A38DDD9E2A34FEF300044E25 /* Main */,
+				A31F77622A365F2E006C486D /* TodaySpendings */,
+				A31D6DC32A4DD21F002D999C /* Helpers */,
+				A31D6DBA2A4DC4E5002D999C /* Extensions */,
 			);
 			path = "Conscious Spendings";
 			sourceTree = "<group>";
@@ -123,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				A38DDD9F2A34FF5F00044E25 /* MainSpendingView.swift */,
+				A31D6DC82A4DD2FA002D999C /* MainSpendingViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -257,8 +305,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A31F77642A365F41006C486D /* TodaySpendingsView.swift in Sources */,
+				A31D6DC22A4DC968002D999C /* UIApplicationExt.swift in Sources */,
 				A38DDD752A33793800044E25 /* Conscious_SpendingsApp.swift in Sources */,
+				A31D6DC72A4DD2C3002D999C /* DecimalExt.swift in Sources */,
+				A31D6DB92A4DBB81002D999C /* SpendingsResultView.swift in Sources */,
+				A31D6DC92A4DD2FA002D999C /* MainSpendingViewModel.swift in Sources */,
+				A31D6DBE2A4DC508002D999C /* UIScreenExt.swift in Sources */,
+				A31D6DC02A4DC937002D999C /* ViewExt.swift in Sources */,
 				A38DDDA02A34FF5F00044E25 /* MainSpendingView.swift in Sources */,
+				A31D6DC52A4DD255002D999C /* RoundedDecimal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

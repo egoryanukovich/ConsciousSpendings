@@ -7,28 +7,25 @@
 
 import SwiftUI
 
-class ViewModel: ObservableObject {
-  @Published var score = ""
-//  var rbe: Decimal = Dec
-  private let formatter: NumberFormatter = {
-      let formatter = NumberFormatter()
-      formatter.numberStyle = .decimal
-      return formatter
-  }()
+enum ScreenPath: String, Hashable, CaseIterable {
+  case todaySpendings
 }
 
 struct MainSpendingView: View {
 
-  @StateObject private var vm = ViewModel()
+  @StateObject private var viewModel = ViewModel()
   @State private var score = ""
   @FocusState private var isFocused: Bool
 
   // MARK: - View
   var body: some View {
     let _ = Self._printChanges()
-
+    NavigationStack(path: $viewModel.path) {
       VStack(spacing: .zero) {
         textField
+          .onTapGesture {
+            isFocused = true
+          }
         Spacer()
       }
       .safeAreaInset(edge: .bottom) {
@@ -41,6 +38,15 @@ struct MainSpendingView: View {
             isFocused = false
           }
       )
+      .navigationTitle("Conscious Spendings")
+      .navigationDestination(for: ScreenPath.self) { path in
+        switch path {
+          case .todaySpendings:
+            TodaySpendingsView()
+              .environmentObject(viewModel)
+        }
+      }
+    }
   }
 
   private var textField: some View {
@@ -57,7 +63,7 @@ struct MainSpendingView: View {
         Please, add your total spendings for current day
         """
       )
-        .font(.caption)
+      .font(.caption)
       .foregroundColor(.gray)
     }
     .padding(.horizontal, 24.0)
@@ -65,15 +71,29 @@ struct MainSpendingView: View {
 
   private var saveButton: some View {
     Button {
-      print("save score")
+      guard !score.isEmpty else { return }
+      isFocused = false
+      viewModel.setupSpending(value: score)
+      viewModel.path.append(.todaySpendings)
     } label: {
       Text("Save")
+        .foregroundColor(.white)
         .frame(maxWidth: .infinity)
-        .fontWeight(.medium)
         .font(.title)
         .padding()
-        .background(Color.yellow)
-//        .background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .leading, endPoint: .trailing))
+        .background(
+          LinearGradient(
+            gradient: Gradient(
+              colors: [
+                Color("instagramGradientFirst"),
+                Color("instagramGradientSecond"),
+                Color("instagramGradientThird")
+              ]
+            ),
+            startPoint: .leading,
+            endPoint: .trailing
+          )
+        )
         .cornerRadius(24.0)
         .foregroundColor(.black)
         .padding([.horizontal, .bottom], 24.0)
