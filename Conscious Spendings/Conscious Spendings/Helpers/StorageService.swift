@@ -11,38 +11,54 @@ enum FileManagerPath: String {
   case dailySpendings
 }
 
-// TODO: - add error handling
+enum AppError: Error {
+  case withoutInfo
+  case invalidSpendings
+}
+
+struct ErrorWrapper: Identifiable {
+  var id: String {
+    error.localizedDescription
+  }
+
+  let error: Error
+  let guidance: String
+}
+
 final class StorageService {
-  static func saveData<T: Codable>(_ data: T, to path: FileManagerPath) {
+  @discardableResult
+  static func saveData<T: Codable>(_ data: T, to path: FileManagerPath) -> ErrorWrapper? {
     let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-    guard let documentURL = (directoryURL?.appendingPathComponent(path.rawValue).appendingPathExtension("json")) else { return }
+    guard let documentURL = (directoryURL?.appendingPathComponent(path.rawValue).appendingPathExtension("json")) else {
+      return ErrorWrapper(error: AppError.withoutInfo, guidance: "can't find document url")
+    }
     let jsonEncoder = JSONEncoder()
     do {
       let data = try jsonEncoder.encode(data)
       do {
         try data.write(to: documentURL, options: .noFileProtection)
       } catch {
-        print("Error...Cannot save data!!!See error: \(error.localizedDescription)")
+        return ErrorWrapper(error: error, guidance: "Cannot save data!!!\nSee error: \(error.localizedDescription)")
       }
     } catch {
-      print("Error...Cannot save data!!!See error: \(error.localizedDescription)")
+      return ErrorWrapper(error: error, guidance: "Cannot encode data!!!\nSee error: \(error.localizedDescription)")
     }
+    return nil
   }
   
-  static func fetchData<T: Codable>(of type: T.Type, from path: FileManagerPath) -> T? {
+  static func fetchData<T: Codable>(of type: T.Type, from path: FileManagerPath) -> (result: T?, error: ErrorWrapper?) {
     let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-    guard let documentURL = (directoryURL?.appendingPathComponent(path.rawValue).appendingPathExtension("json")) else { return nil }
+    guard let documentURL = (directoryURL?.appendingPathComponent(path.rawValue).appendingPathExtension("json")) else { return (nil, ErrorWrapper(error: AppError.withoutInfo, guidance: "can't find document url")) }
     do {
       let data = try Data(contentsOf: documentURL)
       do {
         let jsonDecoder = JSONDecoder()
-        return try jsonDecoder.decode(type, from: data)
+        return (try jsonDecoder.decode(type, from: data), nil)
       } catch {
-        print("Error...Cannot save data!!!See error: \(error.localizedDescription)")
+        return (nil, ErrorWrapper(error: error, guidance: "Cannot fetch data!!!\nSee error: \(error.localizedDescription)"))
       }
     } catch {
-      print("Error...Cannot save data!!!See error: \(error.localizedDescription)")
+      return (nil, ErrorWrapper(error: error, guidance: "Cannot find document!!!\nSee error: \(error.localizedDescription)"))
     }
-    return nil
   }
 }

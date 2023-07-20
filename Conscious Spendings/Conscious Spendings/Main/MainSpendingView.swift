@@ -14,39 +14,63 @@ enum ScreenPath: String, Hashable, CaseIterable {
 struct MainSpendingView: View {
 
   @StateObject private var viewModel = ViewModel()
+  @EnvironmentObject private var errorState: ErrorState
   @State private var score = ""
-  @FocusState private var isFocused: Bool
 
   // MARK: - View
   var body: some View {
     let _ = Self._printChanges()
     NavigationStack(path: $viewModel.path) {
-      VStack(spacing: .zero) {
-        textField
-          .onTapGesture {
-            isFocused = true
+      MainSpendingTextFieldView(score: $score)
+        .environmentObject(viewModel)
+        .environmentObject(errorState)
+        .navigationTitle("Conscious Spendings")
+        .navigationDestination(for: ScreenPath.self) { path in
+          switch path {
+            case .todaySpendings:
+              TodaySpendingsView()
+                .environmentObject(viewModel)
           }
-        Spacer()
-      }
-      .safeAreaInset(edge: .bottom) {
-        saveButton
-      }
-      .background(
-        Color.white
-          .ignoresSafeArea()
-          .onTapGesture {
-            isFocused = false
-          }
-      )
-      .navigationTitle("Conscious Spendings")
-      .navigationDestination(for: ScreenPath.self) { path in
-        switch path {
-          case .todaySpendings:
-            TodaySpendingsView()
-              .environmentObject(viewModel)
         }
-      }
     }
+  }
+}
+
+struct MainSpendingView_Previews: PreviewProvider {
+  static var previews: some View {
+    MainSpendingView()
+  }
+}
+
+struct MainSpendingTextFieldView: View {
+
+  @Binding private var score: String
+  @FocusState private var isFocused: Bool
+  @EnvironmentObject private var viewModel: ViewModel
+  @EnvironmentObject private var errorState: ErrorState
+
+  init(score: Binding<String>) {
+    _score = score
+  }
+
+  var body: some View {
+    VStack(spacing: .zero) {
+      textField
+        .onTapGesture {
+          isFocused = true
+        }
+      Spacer()
+    }
+    .safeAreaInset(edge: .bottom) {
+      saveButton
+    }
+    .background(
+      Color.white
+        .ignoresSafeArea()
+        .onTapGesture {
+          isFocused = false
+        }
+    )
   }
 
   private var textField: some View {
@@ -73,8 +97,10 @@ struct MainSpendingView: View {
     Button {
       guard !score.isEmpty else { return }
       isFocused = false
-      viewModel.setupSpending(value: score)
-      viewModel.path.append(.todaySpendings)
+      errorState.errorWrapper = viewModel.setupSpending(value: score)
+      if errorState.errorWrapper == nil {
+        viewModel.path.append(.todaySpendings)
+      }
     } label: {
       Text("Save")
         .foregroundColor(.white)
@@ -98,11 +124,5 @@ struct MainSpendingView: View {
         .foregroundColor(.black)
         .padding([.horizontal, .bottom], 24.0)
     }
-  }
-}
-
-struct MainSpendingView_Previews: PreviewProvider {
-  static var previews: some View {
-    MainSpendingView()
   }
 }

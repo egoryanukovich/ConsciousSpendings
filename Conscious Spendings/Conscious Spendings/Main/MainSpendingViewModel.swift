@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+final class ErrorState: ObservableObject {
+  @Published var isPresented: Bool = false
+  var errorWrapper: ErrorWrapper? {
+    didSet {
+      isPresented = errorWrapper != nil
+    }
+  }
+}
+
 final class ViewModel: ObservableObject {
   @Published var path: [ScreenPath] = []
   var isLimitExceed: Bool {
@@ -15,25 +24,30 @@ final class ViewModel: ObservableObject {
   private(set) var spendings = Decimal()
   private var limit = Decimal(80.0)
 
-  func setupSpending(value: String) {
-    spendings = SpendingCalculation.saveSpending(value) ?? Decimal()
-    saveDailySpendingsToStorage()
+  @discardableResult
+  func setupSpending(value: String) -> ErrorWrapper? {
+    guard let spendings = SpendingCalculation.saveSpending(value) else {
+      return ErrorWrapper(error: AppError.invalidSpendings, guidance: "Please, check correctness of your data")
+    }
+    self.spendings = spendings
+    return saveDailySpendingsToStorage()
   }
 
-  private func saveDailySpendingsToStorage() {
+  private func saveDailySpendingsToStorage() -> ErrorWrapper? {
     let todaySpendings = DaySpendingModel(
       spendings: spendings,
       isLimitExceed: isLimitExceed
     )
-    if
-      var currentMonthSpendings = StorageService.fetchData(of: MonthSpendingModel.self, from: .dailySpendings)
-    {
+    let currentMonthData = StorageService.fetchData(of: MonthSpendingModel.self, from: .dailySpendings)
+    if var currentMonthSpendings = currentMonthData.result {
       currentMonthSpendings.appendNewSpending(todaySpendings)
-      StorageService.saveData(currentMonthSpendings, to: .dailySpendings)
+      return StorageService.saveData(currentMonthSpendings, to: .dailySpendings)
+    } else if let error = currentMonthData.error {
+      return error
     } else {
       var monthSpendings = MonthSpendingModel()
       monthSpendings.appendNewSpending(todaySpendings)
-      StorageService.saveData(monthSpendings, to: .dailySpendings)
+      return StorageService.saveData(monthSpendings, to: .dailySpendings)
     }
   }
 }

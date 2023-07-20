@@ -9,9 +9,18 @@ import SwiftUI
 
 @main
 struct Conscious_SpendingsApp: App {
-    var body: some Scene {
-        WindowGroup {
-            MainSpendingView()
+
+  @StateObject private var errorState = ErrorState()
+
+  var body: some Scene {
+    WindowGroup {
+      MainSpendingView()
+        .environmentObject(errorState)
+        .alert(errorState.errorWrapper?.guidance ?? "", isPresented: $errorState.isPresented) {
+          Button("OK") {
+            errorState.errorWrapper = nil
+          }
         }
     }
+  }
 }
